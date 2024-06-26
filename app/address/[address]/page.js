@@ -25,9 +25,9 @@ const getBalance = async (address) => {
 };
 
 const getTokenBalance = async (tokenAddress, wallet) => {
-  const provider = new ethers.JsonRpcApiProvider(process.env.INFURA_RPC);
+  const provider = new ethers.JsonRpcProvider(process.env.INFURA_RPC);
   const token = new ethers.Contract(tokenAddress, tokenJson.abi, provider);
-  const res = await token.balance(wallet);
+  const res = await token.balanceOf(wallet);
 
   return res;
 };
@@ -59,7 +59,7 @@ export default async function Address({ params }) {
           <div className="field border-bottom">
             <div className="name">ETH Balance:</div>
             <div className="value">
-              {ethers.formatUnits(usdcBalance, 6)} ETH
+              {ethers.formatUnits(usdcBalance, 6)} USDC
             </div>
           </div>
         </div>
